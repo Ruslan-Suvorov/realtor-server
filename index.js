@@ -22,7 +22,7 @@ app.use("/", commentRouter);
 
 const mongodbUrl = process.env.DB_URL;
 
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 mongoose
   .connect(mongodbUrl)
