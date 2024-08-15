@@ -19,8 +19,11 @@ app.use(cors());
 app.use("/", userRouter);
 app.use("/", advertRouter);
 app.use("/", commentRouter);
+app.get("/", (req, res) => {
+  res.send("You are connected to API");
+});
 
-const mongodbUrl = process.env.DB_URL;
+const mongodbUrl = process.env.MONGODB_URL;
 
 const port = process.env.PORT || 4000;
 
@@ -28,7 +31,7 @@ mongoose
   .connect(mongodbUrl)
   .then(() => {
     app.listen(port, () => {
-      console.log(`Server is started on http://localhost:${port}`);
+      console.log(`Server is started on port :${port}`);
     });
   })
   .catch((error) => console.log(error));
