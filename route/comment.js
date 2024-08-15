@@ -7,11 +7,13 @@ import {
   getComments,
 } from "../controller/comment.js";
 const router = express.Router();
+import auth from "../middleware/auth.js";
 
-router.post("/create-comment", createComment);
+router.post("/create-comment", auth, createComment);
+router.patch("/edit-comment/:id", auth, editComment);
+router.delete("/delete-comment/:id", auth, deleteComment);
+router.patch("/delete-reply/:id", auth, deleteReply);
+
 router.get("/comments/:id", getComments);
-router.patch("/edit-comment/:id", editComment);
-router.delete("/delete-comment/:id", deleteComment);
-router.patch("/delete-reply/:id", deleteReply);
 
 export default router;
